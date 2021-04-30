@@ -1,11 +1,27 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBook } from "../store/actions/bookActions";
 
 const Library = () => {
+  const dispatch = useDispatch();
 
   const handleBookDelete = (id) => {
-    //TODO dispatch the delete book action here
+    console.log('id', id);
+    dispatch(deleteBook({ id }));
   }
 
+  const books = useSelector(state => state.books.books);
+
+  const booksTable = books.map(book => {
+    return (
+      <tr key={book.id}>
+        <td>{book.title}</td>
+        <td>{book.author}</td>
+        <td>{book.rating}</td>
+        <td><button className="delete" onClick={() => handleBookDelete(book.id)}>X</button></td>
+      </tr>
+    )
+  })
   return (
     <div className='library'>
       <h2>Library</h2>
@@ -17,12 +33,7 @@ const Library = () => {
             <th>Rating</th>
             <th></th>
           </tr>
-          <tr>
-            <td>Dune</td>
-            <td>F. Herbert</td>
-            <td>10</td>
-            <td><button className="delete" onClick={handleBookDelete}>X</button></td>
-          </tr>
+          {booksTable}
         </tbody>
       </table>
     </div>

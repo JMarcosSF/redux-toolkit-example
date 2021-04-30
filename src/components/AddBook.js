@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBook } from "../store/actions/bookActions";
+import { nanoid } from "@reduxjs/toolkit";
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [rating, setRating] = useState('5');
 
+  const dispatch = useDispatch();
+
   const handleAddBook = (e) => {
     e.preventDefault();
+
+    // Dispatch the action here using useDispatch()
+    // by dispatching the action using createAction in
+    // bookActions.js
+    dispatch(addBook({
+      title,
+      author,
+      rating,
+      id: nanoid(),
+    }));
   }
 
   return (

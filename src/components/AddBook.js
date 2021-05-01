@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { addBook } from "../store/actions/bookActions";
 import { addBook } from "../store/slices/bookSlice";  // replacing actions w/ slices
-import { nanoid } from "@reduxjs/toolkit";
+// import { nanoid } from "@reduxjs/toolkit";
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -21,7 +21,7 @@ const AddBook = () => {
       title,
       author,
       rating,
-      id: nanoid(),
+      // id: nanoid(),
     }));
   }
 
